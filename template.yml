@@ -2,6 +2,7 @@ AWSTemplateFormatVersion: 2010-09-09
 Transform:
 - AWS::Serverless-2016-10-31
 - AWS::CodeStar
+Description: Personal Helper Bot
 
 Parameters:
   ProjectId:
@@ -9,17 +10,21 @@ Parameters:
     Description: AWS CodeStar projectID used to associate new resources to team members
 
 Resources:
-  GetHelloWorld:
-    Type: AWS::Serverless::Function
+  Uccio:
+    Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: index.get
+      Handler: index.handler
       Runtime: nodejs4.3
+      CodeUri: .
+      Description: Personal Helper Bot
+      MemorySize: 128
+      Timeout: 30
       Role:
         Fn::ImportValue:
           !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
       Events:
-        GetEvent:
+        Api1:
           Type: Api
           Properties:
             Path: /
-            Method: get
+            Method: POST
