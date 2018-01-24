@@ -10,7 +10,7 @@ Parameters:
     Description: AWS CodeStar projectID used to associate new resources to team members
 
 Resources:
-  Uccio:
+  Calling:
     Type: 'AWS::Serverless::Function'
     Properties:
       Handler: index.handler
